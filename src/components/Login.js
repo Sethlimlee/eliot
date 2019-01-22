@@ -9,15 +9,17 @@ class Login extends Component {
     return (
       <div>
         <div className="splash">
-        <div className='logo'><img
-        src="https://www.google.com/drive/static/images/drive/logo-drive.png"
-        alt="mplogo"
-        height='100'
-        width='100'
-        />
-        </div>
-        <div className='mp'>eliot cloud</div>
-        <Link to="/Home" className='loginButton'>Go to Eliot Cloud</Link>
+          <div className="logo">
+            <img
+              src="https://www.legrand.us/-/media/images/modularcontent/generalfeatures/eliot-landing/eliot-logo-550x550.ashx"
+              alt="mplogo"
+              height="550"
+              width="550"
+            />
+          </div>
+          <Link to="/Home" className="loginButton">
+            Go to Eliot Cloud
+          </Link>
         </div>
       </div>
     );

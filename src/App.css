@@ -5,8 +5,6 @@
 .splash {
   height: 100vh;
   width: 100%;
-  background-image: url("https://www.google.com/drive/static/images/home/intro-1600.jpg");
-  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,13 +12,6 @@
   color: white;
 }
 
-.mp {
-  padding: 20px;
-  font-size: 36px;
-  text-shadow: 0px 2px 3px rgba(0,0,0,0.4);
-  font: 400 48px/1.667 "Open Sans", sans-serif;
-  font-weight: 100;
-}
 
 .loginButton {
   height: 50px;
@@ -33,7 +24,14 @@
   font-family: "Open Sans", arial, sans-serif;
   font-weight: 600;
   text-decoration: none;
+  border-radius: 20px;
 }
 .loginButton:hover {
   background-color: #245dc1;
+}
+
+.home {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50vh;
 }
