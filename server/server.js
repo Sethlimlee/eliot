@@ -1,25 +1,58 @@
 require("dotenv").config();
-
+const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const bodyParser = require("body-parser");
 
 const app = express();
 
 app.use(cors());
 
-app.get("/api/get", function(req, res) {
+app.use(bodyParser.json());
+
+//~~~~~~~~~~~~~~// Get All Plants //~~~~~~~~~~~~~~//
+app.get("/api/get/:token", function(req, res) {
+  const { token } = req.params;
   axios
-    .get("https://api.fortnitetracker.com/v1/profile/pc/SopaGrande", {
+    .get("https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants", {
       headers: {
-        "TRN-Api-Key": process.env.APIKey
+        "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
+        Authorization: "Bearer " + token
       }
     })
     .then(response => {
-      res.status(200).send(JSON.stringify(response.data.lifeTimeStats[11]));
+      res.status(200).send(JSON.stringify(response.data));
     });
 });
+//~~~~~~~~~~~~~~// Get All Plants //~~~~~~~~~~~~~~//
+
+//~~~~~~~~~~~~~~// Delete Plant //~~~~~~~~~~~~~~//
+app.delete("/api/deletePlant/:id/:token", function(req, res) {
+  const { token, id } = req.params;
+  axios
+    .delete(
+      `https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants/${id}`,
+      {
+        headers: {
+          "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
+          Authorization: "Bearer " + token
+        }
+      }
+    )
+    .then(response => {
+      axios
+        .get("https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants", {
+          headers: {
+            "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          res.status(200).send(JSON.stringify(response.data));
+        });
+    });
+});
+//~~~~~~~~~~~~~~// Delete Plant //~~~~~~~~~~~~~~//
 
 const port = 3005;
 

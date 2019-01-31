@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class Login extends Component {
-  constructor() {
-    super();
+
+  login() {
+    const url =
+      "https://login.microsoftonline.com/tfp/eliotclouduamqa.onmicrosoft.com/B2C_1_Eliot-SignUpOrSignIn/oauth2/v2.0/authorize?response_type=token&state=&client_id=3f82e316-1e1d-42f0-8ab2-0e7ba3f51eb7&scope=https%3A%2F%2Feliotclouduamqa.onmicrosoft.com%2Fsecurity%2Faccess.full&redirect_uri=http%3A%2F%2Flocalhost%3A3000";
+      window.location.replace(url);
   }
+
   render() {
     return (
       <div>
@@ -17,9 +20,9 @@ class Login extends Component {
               width="550"
             />
           </div>
-          <Link to="/Home" className="loginButton">
+          <div className="loginButton" onClick={this.login}>
             Go to Eliot Cloud
-          </Link>
+          </div>
         </div>
       </div>
     );

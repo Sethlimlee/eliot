@@ -1,54 +1,83 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import Plant from "./Plant";
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      input: "",
-      test: ""
+      token: "",
+      plants: []
     };
   }
 
   componentDidMount() {
-    axios.get("https://swapi.co/api/people/69/").then(response => {
+    this.getPlants();
+  }
+
+  getPlants() {
+    var token = "";
+    var copyCookieToToken = document.cookie.split(";").filter(item => {
+      if (item.includes("token")) {
+        var justNumber = item.split("=")[1].toString();
+        token = justNumber;
+        this.setState({
+          token: token
+        });
+      }
+    });
+    if (this.props.token !== "") {
+      axios.get("/api/get/" + this.props.token).then(response => {
+        console.log(this.props.token);
+        this.setState({
+          plants: response.data
+        });
+      });
+    } else {
+      axios.get("/api/get/" + token).then(response => {
+        console.log(token);
+        this.setState({
+          plants: response.data
+        });
+      });
+    }
+  }
+
+  deletePlant(id, token) {
+    axios.delete("/api/deletePlant/" + id + "/" + token).then(response => {
       this.setState({
-        test: response.data
+        plants: response.data
       });
     });
-  }
-
-  handleInput(value) {
-    this.setState({
-      input: value
-    });
-  }
-
-  handleClick() {
-    axios
-      .get("/api/get")
-      .then(response => {
-        console.log(response.data);
-      });
   }
 
   render() {
-    if(this.state.input !== ''){console.log(this.state.input)}
-    if(this.state.test !== ''){console.log(this.state.test)}
+    var plants = ''
+    if(this.state.plants !== [] && this.state.plants !== ''){
+    plants = this.state.plants.map(plant => (
+      <Plant
+        token={this.state.token}
+        name={plant.name}
+        key={plant.id}
+        status={plant.status}
+        id={plant.id}
+        deletePlant={() => this.deletePlant(plant.id, this.state.token)}
+      />
+    ))};
     return (
       <div>
-        <div className="home">
-          <input
-            className="input"
-            placeholder='no u'
-            onChange={e => this.handleInput(e.target.value)}
-          />
-          <br/>
-          <button onClick={() => this.handleClick()}>click me for magic</button>
-        </div>
+        <div className="plants">{plants}</div>
       </div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  const { token } = state;
+  return {
+    token
+  };
+}
+
+export default connect(mapStateToProps)(Home);
