@@ -24,7 +24,7 @@ app.get("/api/get/:token", function(req, res) {
       res.status(200).send(JSON.stringify(response.data));
     });
 });
-//~~~~~~~~~~~~~~// Get All Plants //~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //~~~~~~~~~~~~~~// Delete Plant //~~~~~~~~~~~~~~//
 app.delete("/api/deletePlant/:id/:token", function(req, res) {
@@ -52,7 +52,7 @@ app.delete("/api/deletePlant/:id/:token", function(req, res) {
         });
     });
 });
-//~~~~~~~~~~~~~~// Delete Plant //~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 const port = 3005;
 

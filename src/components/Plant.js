@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class Plant extends Component {
 
   render() {
+    console.log(this.props.id)
     return (
       <div className="plant">
         <div className="plantHeader">
