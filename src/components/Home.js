@@ -44,6 +44,11 @@ class Home extends Component {
     }
   }
 
+  getModules(id, token) {
+    const url = `http://localhost:3000/#/Modules/${id}/${token}`;
+    window.location.replace(url);
+  }
+
   deletePlant(id, token) {
     axios.delete("/api/deletePlant/" + id + "/" + token).then(response => {
       this.setState({
@@ -63,6 +68,7 @@ class Home extends Component {
         status={plant.status}
         id={plant.id}
         deletePlant={() => this.deletePlant(plant.id, this.state.token)}
+        getModules={() => this.getModules(plant.id, this.state.token)}
       />
     ))};
     return (

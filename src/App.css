@@ -87,6 +87,10 @@ width: 100%;
 box-sizing: border-box;
 }
 
+.plantName:hover {
+  cursor: pointer;
+}
+
 .plantFooter {
   height: 16%;
   width: 100%;
