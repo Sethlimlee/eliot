@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
 import Module from "./Module";
-import Plant from "./Plant";
+
 
 class Modules extends Component {
   constructor() {
