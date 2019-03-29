@@ -12,7 +12,7 @@ class Token extends Component {
   }
 
   render() {
-    return <div className="in">WE'RE IN</div>;
+    return <div className="in"></div>;
   }
 }
 
