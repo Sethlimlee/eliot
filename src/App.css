@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+/* .invalid-input {
+  border-color: rgba(255, 0, 0, 0.356);
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.356);
+} */
+
 .splash {
   height: 100vh;
   width: 100%;
@@ -12,6 +17,10 @@
   color: white;
 }
 
+.access-token {
+  margin-bottom: 30px;
+  width: 70% !important;
+}
 
 .loginButton {
   height: 50px;
@@ -27,6 +36,24 @@
   border-radius: 20px;
   margin-bottom: 10vh;
 }
+
+.dev-login > .logo > img {
+  padding-bottom: 40px;
+}
+
+.dev-login > button {
+  color: white;
+  border-radius: 20px;
+  height: 50px;
+  width: 170px;
+  font-weight: 600;
+  vertical-align: bottom;
+}
+
+.dev-login > button:hover {
+  color: white;
+}
+
 .loginButton:hover {
   background-color: #245dc1;
   cursor: pointer;
