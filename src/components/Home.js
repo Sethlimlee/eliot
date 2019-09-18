@@ -18,7 +18,7 @@ class Home extends Component {
 
   getPlants() {
     var token = "";
-    var copyCookieToToken = document.cookie.split(";").filter(item => {
+    document.cookie.split(";").filter(item => {
       if (item.includes("token")) {
         var justNumber = item.split("=")[1].toString();
         token = justNumber;
@@ -59,18 +59,19 @@ class Home extends Component {
 
   render() {
     var plants = ''
-    if(this.state.plants !== [] && this.state.plants !== ''){
-    plants = this.state.plants.map(plant => (
-      <Plant
-        token={this.state.token}
-        name={plant.name}
-        key={plant.id}
-        status={plant.status}
-        id={plant.id}
-        deletePlant={() => this.deletePlant(plant.id, this.state.token)}
-        getModules={() => this.getModules(plant.id, this.state.token)}
-      />
-    ))};
+    if (this.state.plants !== [] && this.state.plants !== '') {
+      plants = this.state.plants.map(plant => (
+        <Plant
+          token={this.state.token}
+          name={plant.name}
+          key={plant.id}
+          status={plant.status}
+          id={plant.id}
+          deletePlant={() => this.deletePlant(plant.id, this.state.token)}
+          getModules={() => this.getModules(plant.id, this.state.token)}
+        />
+      ))
+    };
     return (
       <div>
         <div className="plants">{plants}</div>

@@ -11,10 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //~~~~~~~~~~~~~~// Get All Plants //~~~~~~~~~~~~~~//
-app.get("/api/get/:token", function(req, res) {
+app.get("/api/get/:token", function (req, res) {
   const { token } = req.params;
   axios
-    .get("https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants", {
+    .get("https://eliot.azure-api.net/servicecatalog/api/v2.0/plants", {
       headers: {
         "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
         Authorization: "Bearer " + token
@@ -27,12 +27,12 @@ app.get("/api/get/:token", function(req, res) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //~~~~~~~~~~~~~~// Get Modules //~~~~~~~~~~~~~~//
-app.get("/api/getModules/:id/:token", function(req, res) {
+app.get("/api/getModules/:id/:token", function (req, res) {
   const { token, id } = req.params;
   console.log("made it to server");
   axios
     .get(
-      `https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants/${id}/modules`,
+      `https://eliot.azure-api.net/servicecatalog/api/v2.0/plants/${id}/modules`,
       {
         headers: {
           "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
@@ -48,7 +48,7 @@ app.get("/api/getModules/:id/:token", function(req, res) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //~~~~~~~~~~~~~~// Send Command //~~~~~~~~~~~~~~//
-app.post("/api/sendCommand/:id/:token", function(req, res) {
+app.post("/api/sendCommand/:id/:token", function (req, res) {
   const { token, id } = req.params;
   // console.log("made it to command server");
   // console.log(id);
@@ -60,7 +60,7 @@ app.post("/api/sendCommand/:id/:token", function(req, res) {
   };
   axios
     .post(
-      `https://eliotqa.azure-api.net/devicemanagement/api/v2.0/modules/${id}/commands/on`,
+      `https://eliot.azure-api.net/devicemanagement/api/v2.0/modules/${id}/commands/on`,
       data,
       {
         headers: {
@@ -77,11 +77,11 @@ app.post("/api/sendCommand/:id/:token", function(req, res) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //~~~~~~~~~~~~~~// Delete Plant //~~~~~~~~~~~~~~//
-app.delete("/api/deletePlant/:id/:token", function(req, res) {
+app.delete("/api/deletePlant/:id/:token", function (req, res) {
   const { token, id } = req.params;
   axios
     .delete(
-      `https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants/${id}`,
+      `https://eliot.azure-api.net/servicecatalog/api/v2.0/plants/${id}`,
       {
         headers: {
           "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
@@ -91,7 +91,7 @@ app.delete("/api/deletePlant/:id/:token", function(req, res) {
     )
     .then(response => {
       axios
-        .get("https://eliotqa.azure-api.net/servicecatalog/api/v2.0/plants", {
+        .get("https://eliot.azure-api.net/servicecatalog/api/v2.0/plants", {
           headers: {
             "Ocp-Apim-Subscription-Key": process.env.SUB_KEY,
             Authorization: "Bearer " + token

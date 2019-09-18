@@ -13,6 +13,12 @@ class Login extends Component {
     this.enterKeyLogin = this.enterKeyLogin.bind(this);
   }
 
+  componentWillMount() {
+    if (this.getCookie('token')) {
+      window.location.replace('#/Home');
+    }
+  }
+
   tokenChange(e) {
     const token = e.target.value;
     this.setState({ token: token });
@@ -30,7 +36,7 @@ class Login extends Component {
       return;
     }
 
-    document.cookie = `token=${this.state.token}`;
+    document.cookie = `token=${this.state.token}; max-age=${1 * 60 * 60}`;
     window.location.replace('#/Home');
   }
 
@@ -38,6 +44,22 @@ class Login extends Component {
     const url =
       "https://login.microsoftonline.com/tfp/eliotclouduamqa.onmicrosoft.com/B2C_1_Eliot-SignUpOrSignIn/oauth2/v2.0/authorize?response_type=token&state=&client_id=3f82e316-1e1d-42f0-8ab2-0e7ba3f51eb7&scope=https%3A%2F%2Feliotclouduamqa.onmicrosoft.com%2Fsecurity%2Faccess.full&redirect_uri=http%3A%2F%2Flocalhost%3A3000";
     window.location.replace(url);
+  }
+
+  getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
   }
 
   render() {

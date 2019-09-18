@@ -15,9 +15,9 @@ class Modules extends Component {
     axios
       .get(
         "/api/getModules/" +
-          this.props.match.params.id +
-          "/" +
-          this.props.match.params.token
+        this.props.match.params.id +
+        "/" +
+        this.props.match.params.token
       )
       .then(response => {
         console.log(response.data);
@@ -41,6 +41,7 @@ class Modules extends Component {
           name={device.name}
           id={device.id}
           sendCommand={() => this.sendCommand(device.id, this.props.match.params.token)}
+          status={device.status}
         />
       ));
     }
