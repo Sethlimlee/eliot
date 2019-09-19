@@ -18,7 +18,10 @@ router.get("/getModules/:id/:token", function (req, res) {
         )
         .then(response => {
             console.log("response received");
-            res.status(200).send(JSON.stringify(response.data));
+            const data = response.data.filter((val) => {
+                return val.deviceType !== 'wifiGroup'
+            })
+            res.status(200).send(JSON.stringify(data));
         });
 });
 
