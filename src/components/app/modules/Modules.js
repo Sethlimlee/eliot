@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Module from "./Module";
+import Module from "./module/index";
 
 
 class Modules extends Component {

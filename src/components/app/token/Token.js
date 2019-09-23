@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import {updateToken} from '../redux/user'
+import { updateToken } from '../../../redux/user'
 
 class Token extends Component {
 
@@ -17,10 +17,10 @@ class Token extends Component {
 }
 
 function mapStateToProps(state) {
-  const {token} = state
+  const { token } = state
   return {
     token
   }
 }
 
-export default connect(mapStateToProps, {updateToken})(Token);
+export default connect(mapStateToProps, { updateToken })(Token);
