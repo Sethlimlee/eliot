@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import Plant from "../plant/Plant";
 import { getPlants, deletePlant } from '../../../data-access/plantsDAO'
