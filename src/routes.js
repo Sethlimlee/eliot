@@ -9,7 +9,7 @@ export default (
   <Switch>
     <Route component={Login} exact path='/' />
     <Route component={Home} path='/Home' />
-    <Route component={Modules} path='/Modules/:id/:token' />
+    <Route component={Modules} path='/Modules/:id/' />
     <Route component={Token} />
   </Switch>
 )
