@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const API = require('./API/index');
-const config = require('../config');
+const config = require('../src/config');
 
 const app = express();
 const { app: { port } } = config;

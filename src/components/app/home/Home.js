@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import Plant from "../plant/Plant";
+import { getPlants, deletePlant } from '../../../data-access/plantsDAO'
 
 class Home extends Component {
   constructor() {
@@ -13,35 +14,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getPlants();
-  }
-
-  getPlants() {
-    var token = "";
-    document.cookie.split(";").filter(item => {
-      if (item.includes("token")) {
-        var justNumber = item.split("=")[1].toString();
-        token = justNumber;
-        this.setState({
-          token: token
-        });
-      }
-    });
-    if (this.props.token !== "") {
-      axios.get("/api/get/" + this.props.token).then(response => {
-        console.log(this.props.token);
-        this.setState({
-          plants: response.data
-        });
-      });
-    } else {
-      axios.get("/api/get/" + token).then(response => {
-        console.log(token);
-        this.setState({
-          plants: response.data
-        });
-      });
-    }
+    getPlants().then(res => this.setState({ plants: res.data }))
   }
 
   getModules(id, token) {
@@ -49,12 +22,8 @@ class Home extends Component {
     window.location.replace(url);
   }
 
-  deletePlant(id, token) {
-    axios.delete("/api/deletePlant/" + id + "/" + token).then(response => {
-      this.setState({
-        plants: response.data
-      });
-    });
+  deletePlant(id) {
+    deletePlant(id).then(res => this.setState({ plants: res.data }))
   }
 
   render() {
@@ -67,7 +36,7 @@ class Home extends Component {
           key={plant.id}
           status={plant.status}
           id={plant.id}
-          deletePlant={() => this.deletePlant(plant.id, this.state.token)}
+          deletePlant={() => this.deletePlant(plant.id)}
           getModules={() => this.getModules(plant.id, this.state.token)}
         />
       ))

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ModuleView from './module-view'
 
 class Module extends React.Component {
