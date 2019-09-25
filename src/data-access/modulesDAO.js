@@ -7,4 +7,17 @@ function getModules(id) {
     return axios.get(url, headers);
 }
 
-export { getModules }
+function getModuleStatus(id) {
+    const headers = { ...getStandardHeaders() };
+    const url = `/devicemanagement/api/v2.0/modules/${id}/commands/getState`;
+    const body = {
+        "timeout" : 20,
+        "command" : {
+          "correlationID" : "ExampleCorrelationID124"
+        }
+    }
+
+    return axios.post(url, body, headers);
+}
+
+export { getModules, getModuleStatus }

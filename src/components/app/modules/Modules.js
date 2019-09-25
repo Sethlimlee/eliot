@@ -38,7 +38,6 @@ class Modules extends Component {
           name={device.name}
           id={device.id}
           sendCommand={() => this.sendCommand(device.id, this.props.match.params.token)}
-          status={device.status}
         />
       ));
     }
