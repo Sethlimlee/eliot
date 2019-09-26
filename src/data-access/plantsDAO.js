@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getStandardHeaders } from '../utils/auth'
+import { getStandardHeaders } from '../shared/auth'
 
 function getPlants(cancel) {
     const headers = { ...getStandardHeaders(), cancelToken: cancel.token };

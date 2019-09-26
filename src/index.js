@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/app/App';
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './shared/store';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <HashRouter>
+  <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </HashRouter>,
+  </Router>,
   document.getElementById('root')
 );
 

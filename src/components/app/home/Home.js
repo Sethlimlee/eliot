@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios'
 import { connect } from "react-redux";
-import Plant from "../plant/Plant";
+import Plant from "../plant/plant";
 import { getPlants, deletePlant } from '../../../data-access/plantsDAO'
+import { setPlant } from '../plant/plant-actions'
 
 class Home extends Component {
 
@@ -28,8 +29,8 @@ class Home extends Component {
   }
 
   getModules(id, token) {
-    const url = `http://localhost:3000/#/Modules/${id}/${token}`;
-    window.location.replace(url);
+    this.props.history.push(`Modules/${id}/${token}`)
+    this.props.setPlant(id)
   }
 
   deletePlant(id) {
@@ -68,4 +69,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+const dispatchToProps = {
+  setPlant
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Home);

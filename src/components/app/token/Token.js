@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { updateToken } from '../../../redux/user'
+import { updateToken } from '../../../shared/user'
 
 class Token extends Component {
 

@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import routes from "../../routes";
-import { Link } from 'react-router-dom';
+import routes from "../../shared/routes";
+import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class App extends Component {
 
+  matchModulesLink(match, location) {
+    if (location.pathname.includes('/Modules'))
+      return true
+    return false
+  }
+
   render() {
-    const href = window.location.href.split('/#')[1];
-    const navbarColor = href === '/' ? 'white' : 'lightblue'
+    const plantId = this.props.selectedPlant
+    const href = window.location.href.split('/')[1];
+    const navbarColor = href ? 'white' : 'lightblue'
 
     return (
       <div className="App">
@@ -19,11 +27,11 @@ class App extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className={`nav-item ${href.includes('/Home') ? 'active' : ''}`}>
-                <Link className="nav-link" to="/Home">Home</Link>
+              <li className="nav-item">
+                <NavLink className="nav-link" activeClassName="active" exact to="/Home">Home</NavLink>
               </li>
-              <li className={`nav-item ${href.includes('/Modules') ? 'active' : ''}`}>
-                <Link className="nav-link" to="/Modules/b1e4212d-7872-4294-9c5e-23f4746c8ef3">Modules</Link>
+              <li className="nav-item">
+                <NavLink className="nav-link" activeClassName="active" strict to={`/Modules/${plantId}`} isActive={this.matchModulesLink}>Modules</NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Scenes</a>
@@ -37,4 +45,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function stateToProps(state) {
+  return {
+    selectedPlant: state.plantReducer.selectedPlant
+  }
+}
+
+// export default connect(stateToProps)(App);
+export default App

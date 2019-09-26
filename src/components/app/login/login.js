@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getToken } from '../../../utils/auth'
+import { getToken } from '../../../shared/auth'
 import './login.css'
 
 class Login extends Component {
@@ -17,7 +17,7 @@ class Login extends Component {
 
   componentWillMount() {
     if (getToken()) {
-      window.location.replace('#/Home');
+      this.props.history.push('/Home')
     }
   }
 
@@ -39,7 +39,7 @@ class Login extends Component {
     }
 
     document.cookie = `token=${this.state.token}; max-age=${1 * 60 * 60}`;
-    window.location.replace('#/Home');
+    this.props.history.push('/Home')
   }
 
   login() {
