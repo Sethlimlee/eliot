@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import routes from "../../shared/routes";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -14,8 +14,8 @@ class App extends Component {
 
   render() {
     const plantId = this.props.selectedPlant
-    const href = window.location.href.split('/')[1];
-    const navbarColor = href ? 'white' : 'lightblue'
+    const href = window.location.href.split('/#')[1];
+    const navbarColor = href === '/' ? 'white' : 'lightblue'
 
     return (
       <div className="App">
@@ -51,5 +51,4 @@ function stateToProps(state) {
   }
 }
 
-// export default connect(stateToProps)(App);
-export default App
+export default withRouter(connect(stateToProps)(App));
