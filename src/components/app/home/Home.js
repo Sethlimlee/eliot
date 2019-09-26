@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import axios from 'axios'
 import { connect } from "react-redux";
 import Plant from "../plant/Plant";
 import { getPlants, deletePlant } from '../../../data-access/plantsDAO'
 
 class Home extends Component {
+
+  CancelToken = axios.CancelToken;
+  requestSource = this.CancelToken.source();
+
   constructor() {
     super();
     this.state = {
@@ -13,7 +18,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    getPlants().then(res => this.setState({ plants: res.data }))
+    getPlants(this.requestSource)
+      .then(res => this.setState({ plants: res.data }))
+      .catch(err => console.log)
+  }
+
+  componentWillUnmount() {
+    this.requestSource.cancel();
   }
 
   getModules(id, token) {
@@ -22,7 +33,9 @@ class Home extends Component {
   }
 
   deletePlant(id) {
-    deletePlant(id).then(res => this.setState({ plants: res.data }))
+    deletePlant(id, this.requestSource)
+      .then(res => this.setState({ plants: res.data }))
+      .catch(err => console.log)
   }
 
   render() {

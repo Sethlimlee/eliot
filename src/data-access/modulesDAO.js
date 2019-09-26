@@ -1,19 +1,19 @@
 import axios from 'axios'
 import { getStandardHeaders } from '../utils/auth'
 
-function getModules(id) {
-    const headers = { ...getStandardHeaders() };
+function getModules(id, cancel) {
+    const headers = { ...getStandardHeaders(), cancelToken: cancel.token };
     const url = `/servicecatalog/api/v2.0/plants/${id}/modules`;
     return axios.get(url, headers);
 }
 
-function getModuleStatus(id) {
-    const headers = { ...getStandardHeaders() };
+function getModuleStatus(id, cancel) {
+    const headers = { ...getStandardHeaders(), cancelToken: cancel.token };
     const url = `/devicemanagement/api/v2.0/modules/${id}/commands/getState`;
     const body = {
-        "timeout" : 20,
-        "command" : {
-          "correlationID" : "ExampleCorrelationID124"
+        "timeout": 20,
+        "command": {
+            "correlationID": "ExampleCorrelationID124"
         }
     }
 

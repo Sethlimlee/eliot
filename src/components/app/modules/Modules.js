@@ -5,6 +5,10 @@ import { getModules } from '../../../data-access/modulesDAO'
 
 
 class Modules extends Component {
+
+  CancelToken = axios.CancelToken;
+  requestSource = this.CancelToken.source();
+
   constructor() {
     super();
     this.state = {
@@ -15,13 +19,19 @@ class Modules extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
 
-    getModules(id).then(res => {
-      const data = res.data.filter((val) => {
-        return val.deviceType !== 'wifiGroup'
-      })
+    getModules(id, this.requestSource)
+      .then(res => {
+        const data = res.data.filter((val) => {
+          return val.deviceType !== 'wifiGroup'
+        })
 
-      this.setState({ modules: data })
-    })
+        this.setState({ modules: data })
+      })
+      .catch(err => console.log)
+  }
+
+  componentWillUnmount() {
+    this.requestSource.cancel();
   }
 
   sendCommand(id, token) {
