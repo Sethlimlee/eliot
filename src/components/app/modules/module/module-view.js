@@ -1,9 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog} from '@fortawesome/free-solid-svg-icons'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 import './module.css'
 
-function Module(props) {
+function ModuleView(props) {
 
   let status = 'Loading...'
   let statusIcon = <FontAwesomeIcon className="cog-spin" icon={faCog} />
@@ -28,4 +28,4 @@ function Module(props) {
   );
 }
 
-export default Module;
+export default ModuleView;

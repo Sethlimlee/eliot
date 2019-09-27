@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import routes from "../../shared/routes";
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
                 <NavLink className="nav-link" activeClassName="active" strict to={`/Modules/${plantId}`} isActive={this.matchModulesLink}>Modules</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Scenes</a>
+                <NavLink className="nav-link" activeClassName="active" strict to="/scenes">Scenes</NavLink>
               </li>
             </ul>
           </div>

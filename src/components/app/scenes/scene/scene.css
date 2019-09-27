@@ -1,0 +1,38 @@
+.container {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+    max-width: 550px !important;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.content {
+    text-align: left;
+    transition: max-height .3s;
+    max-height: 25px;
+    overflow: hidden;
+}
+
+.content.details {
+    max-height: 100px;
+}
+
+.container:hover {
+    background-color: rgb(248, 248, 248);
+}
+
+.scene-info > span {
+    padding: 5px 20px 5px 0
+}
+
+.device-info {
+    border-top: 1px dashed rgb(218, 188, 92);
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+
