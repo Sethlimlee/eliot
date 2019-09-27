@@ -16,7 +16,12 @@ class Scene extends React.Component {
 
     render() {
         return (
-            <SceneView onClick={this.handleSceneClick} showDetails={this.state.showDetails} />
+            <SceneView
+                onClick={this.handleSceneClick}
+                showDetails={this.state.showDetails}
+                name={this.props.name}
+                triggerTime={this.props.triggerTime}
+            />
         )
     }
 }

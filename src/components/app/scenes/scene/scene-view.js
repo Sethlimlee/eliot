@@ -6,10 +6,10 @@ function SceneView(props) {
         <div className="container" onClick={props.onClick}>
             <div className={`content ${props.showDetails ? 'details' : ''}`}>
                 <div className="scene-info">
-                    <span>sc3 super long scene name</span>
+                    <span>{props.name}</span>
                     <span>M,T,W,Th,F,S,Su</span>
                     <span>Time</span>
-                    <span>13:45</span>
+                    <span>{props.triggerTime}</span>
                 </div>
                 <div className="device-info">
                     <div>Dev1: off, 100%</div>

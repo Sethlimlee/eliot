@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { getStandardHeaders } from '../shared/auth'
 
-function getModules(id, cancel) {
+function getModules(id, cancel = { token: '' }) {
     const headers = { ...getStandardHeaders(), cancelToken: cancel.token };
     const url = `/servicecatalog/api/v2.0/plants/${id}/modules`;
     return axios.get(url, headers);
 }
 
-function getModuleStatus(id, cancel) {
+function getModuleStatus(id, cancel = { token: '' }) {
     const headers = { ...getStandardHeaders(), cancelToken: cancel.token };
     const url = `/devicemanagement/api/v2.0/modules/${id}/commands/getState`;
     const body = {
