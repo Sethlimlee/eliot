@@ -18,7 +18,7 @@ class App extends Component {
     const navbarColor = href === '/' ? 'white' : 'lightblue'
 
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundColor: navbarColor }}>
         <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: navbarColor }}>
           <Link className="nav-link" to="/Home"><img src="https://wwl2-webapp-qa.azurewebsites.net/themes/legrand/assets/images/logoLegrand.png" width="120" height="30" alt="" /></Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
