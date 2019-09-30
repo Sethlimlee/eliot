@@ -11,6 +11,7 @@ export default (
     <Route component={Login} exact path='/' />
     <Route component={Home} path='/Home' />
     <Route component={Modules} path='/Modules/:id/' />
+    <Route component={Modules} path='/Modules' />
     <Route component={Scenes} path='/scenes' />
     <Route component={Token} />
   </Switch>

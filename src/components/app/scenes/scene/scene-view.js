@@ -2,6 +2,16 @@ import React from 'react'
 import './scene.css'
 
 function SceneView(props) {
+
+    const devices = props.devices.map((device, i) => {
+        const name = device.deviceName
+        const state = device.state
+        const level = device.level ? ', ' + device.level + '%' : ''
+        const deviceInfo = `${name}: ${state + level}`
+
+        return <div key={i}>{deviceInfo}</div>
+    })
+
     return (
         <div className="container" onClick={props.onClick}>
             <div className={`content ${props.showDetails ? 'details' : ''}`}>
@@ -12,9 +22,7 @@ function SceneView(props) {
                     <span>{props.triggerTime}</span>
                 </div>
                 <div className="device-info">
-                    <div>Dev1: off, 100%</div>
-                    <div>Dev2: on</div>
-                    <div>Dev3: off, 3%</div>
+                    {devices}
                 </div>
             </div>
         </div>

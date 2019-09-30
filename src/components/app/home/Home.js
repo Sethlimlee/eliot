@@ -28,8 +28,8 @@ class Home extends Component {
     this.requestSource.cancel();
   }
 
-  getModules(id, token) {
-    this.props.history.push(`Modules/${id}/${token}`)
+  getModules(id) {
+    this.props.history.push(`Modules/${id}`)
     this.props.setPlant(id)
   }
 
@@ -50,7 +50,7 @@ class Home extends Component {
           status={plant.status}
           id={plant.id}
           deletePlant={() => this.deletePlant(plant.id)}
-          getModules={() => this.getModules(plant.id, this.state.token)}
+          getModules={() => this.getModules(plant.id)}
         />
       ))
     };
