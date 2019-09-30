@@ -11,12 +11,19 @@ function ScenesView(props) {
         let triggerTime = ''
         let sceneDays = ''
         let devices = []
+        let offset = ''
 
         if (props.sceneData[i].payload.schedule) {
             triggerTime = fromMilitary(props.sceneData[i].payload.schedule.triggerTime)
             sceneType = firstCapital(props.sceneData[i].payload.schedule.type)
             sceneDays = props.sceneData[i].payload.schedule.days.split(',')
             sceneDays = numDayToString(...sceneDays)
+            offset = props.sceneData[i].payload.schedule.triggerOffset
+
+            if (offset && offset.length === 7) {
+                const sign = offset[0]
+                offset = sign + offset.substring(2)
+            }
         }
 
         if (props.sceneData[i].payload.sceneDevices) {
@@ -43,6 +50,7 @@ function ScenesView(props) {
                 sceneType={sceneType}
                 sceneDays={sceneDays}
                 devices={devices}
+                offset={offset}
                 key={i}
             />
         )

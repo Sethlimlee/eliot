@@ -6,7 +6,7 @@ class Scene extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { showDetails: false }
+        this.state = { showDetails: true }
         this.handleSceneClick = this.handleSceneClick.bind(this)
     }
 
@@ -24,6 +24,7 @@ class Scene extends React.Component {
                 sceneType={this.props.sceneType}
                 sceneDays={this.props.sceneDays}
                 devices={this.props.devices}
+                offset={this.props.offset}
             />
         )
     }

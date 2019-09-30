@@ -20,6 +20,7 @@ function SceneView(props) {
                     <span>{props.sceneDays}</span>
                     <span>{props.sceneType}</span>
                     <span>{props.triggerTime}</span>
+                    <span>{props.offset}</span>
                 </div>
                 <div className="device-info">
                     {devices}
