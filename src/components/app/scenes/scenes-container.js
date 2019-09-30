@@ -6,13 +6,12 @@ class Scenes extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { scenes: {} }
+        this.state = { scenes: {}, devices: {} }
     }
 
 
     componentDidMount() {
         getScenes().then(res => this.setState({ scenes: res.data }))
-        // getScenes().then(res => console.log(res.data))
     }
 
     render() {

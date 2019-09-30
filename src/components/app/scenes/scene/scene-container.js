@@ -21,6 +21,8 @@ class Scene extends React.Component {
                 showDetails={this.state.showDetails}
                 name={this.props.name}
                 triggerTime={this.props.triggerTime}
+                sceneType={this.props.sceneType}
+                sceneDays={this.props.sceneDays}
             />
         )
     }

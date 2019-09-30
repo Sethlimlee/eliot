@@ -7,8 +7,8 @@ function SceneView(props) {
             <div className={`content ${props.showDetails ? 'details' : ''}`}>
                 <div className="scene-info">
                     <span>{props.name}</span>
-                    <span>M,T,W,Th,F,S,Su</span>
-                    <span>Time</span>
+                    <span>{props.sceneDays}</span>
+                    <span>{props.sceneType}</span>
                     <span>{props.triggerTime}</span>
                 </div>
                 <div className="device-info">
